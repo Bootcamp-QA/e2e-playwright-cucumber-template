@@ -1,6 +1,9 @@
 
 package-lock.json
 node_modules/
-reports/
+reports/cucumber_report.html
+reports/cucumber_report.json
 videos/
 dist/
+src/reports/cucumber_report.html
+src/reports/cucumber_report.json
