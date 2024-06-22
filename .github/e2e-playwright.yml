@@ -1,0 +1,83 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-desktop:
+    name: Run Playwright Tests on Desktop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Playwright Tests on Desktop
+        env:
+          VIEWPORT: desktop
+        run: npm run test:desktop
+
+      - name: Generate HTML Report for Desktop
+        env:
+          REPORT_PATH: src/reports/desktop
+        run: npm run generate-report
+
+      - name: Upload HTML Report for Desktop
+        uses: actions/upload-artifact@v3
+        with:
+          name: desktop-report
+          path: src/reports/desktop/cucumber_report.html
+      - name: Upload videos for desktop
+        uses: actions/upload-artifact@v3
+        with:
+          name: videos-desktop
+          path: src/videos/desktop
+
+  test-mobile:
+    name: Run Playwright Tests on Mobile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Playwright Tests on Mobile
+        run: npm run test:mobile
+
+      - name: Generate HTML Report for Mobile
+        env:
+          REPORT_PATH: src/reports/mobile
+        run: npm run generate-report
+
+      - name: Upload HTML Report for Mobile
+        uses: actions/upload-artifact@v3
+        with:
+          name: mobile-report
+          path: src/reports/mobile/cucumber_report.html
+      - name: Upload videos for mobile
+        uses: actions/upload-artifact@v3
+        with:
+          name: videos-mobile
+          path: src/videos/mobile
+
