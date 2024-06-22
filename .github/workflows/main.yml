@@ -21,6 +21,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+      
+      - name: Install Playwright browsers
+        run: npx playwright install
 
       - name: Run Playwright Tests on Desktop
         env:
@@ -58,6 +61,9 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+      
+      - name: Install Playwright browsers
+        run: npx playwright install
 
       - name: Run Playwright Tests on Mobile
         run: npm run test:mobile
