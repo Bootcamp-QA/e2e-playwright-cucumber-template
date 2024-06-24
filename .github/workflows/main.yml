@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   test-desktop:
@@ -12,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -36,12 +37,12 @@ jobs:
         run: npm run generate-report
 
       - name: Upload HTML Report for Desktop
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: desktop-report
-          path: src/reports/desktop/cucumber_report.html
+          path: src/reports/cucumber_report.html
       - name: Upload videos for desktop
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: videos-desktop
           path: src/videos/desktop
@@ -52,7 +53,7 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -70,16 +71,16 @@ jobs:
 
       - name: Generate HTML Report for Mobile
         env:
-          REPORT_PATH: src/reports/mobile
+          REPORT_PATH: src/reports/
         run: npm run generate-report
 
       - name: Upload HTML Report for Mobile
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mobile-report
           path: src/reports/mobile/cucumber_report.html
       - name: Upload videos for mobile
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: videos-mobile
           path: src/videos/mobile
