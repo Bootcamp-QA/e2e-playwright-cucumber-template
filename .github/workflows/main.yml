@@ -78,7 +78,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mobile-report
-          path: src/reports/mobile/cucumber_report.html
+          path: src/reports/cucumber_report.html
       - name: Upload videos for mobile
         uses: actions/upload-artifact@v4
         with:
