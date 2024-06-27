@@ -1,5 +1,5 @@
 import { Before, After, setWorldConstructor, World, setDefaultTimeout } from '@cucumber/cucumber';
-import { chromium, Browser, Page, BrowserContext } from 'playwright';
+import { chromium, Browser, Page, BrowserContext, devices } from 'playwright';
 
 let browser: Browser;
 
@@ -23,19 +23,18 @@ Before(async function() {
   browser = await chromium.launch({ headless: true });
 
   // Define viewport size based on the environment variable VIEWPORT
-  let viewport;
+  let device = {};
   if (process.env.VIEWPORT === 'mobile') {
-    viewport = { width: 375, height: 812 }; // iPhone X dimensions
+    device = devices['iPhone 12'];
   } else {
-    viewport = { width: 1280, height: 720 }; // Default to desktop dimensions
+    device = devices['Desktop Chrome'];
   }
 
   // Create context with video recording based on the viewport
   this.context = await browser.newContext({
-    viewport,
+    ...device,
     recordVideo: {
       dir: `src/videos/${process.env.VIEWPORT}`, // Save videos in separate folders based on VIEWPORT
-      size: { width: viewport.width, height: viewport.height } // Adjust video size to viewport
     }
   });
 
