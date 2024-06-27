@@ -1,0 +1,13 @@
+{
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDelete": false,
+    "cucumber.parameterTypes": [],
+    "cucumber.glue": [
+        "src/steps/*.{js,ts}",
+        "steps/**/*.{js,ts}",
+        "*steps*/**/*.{js,ts}"
+    ],
+    "cucumber.features": [
+        "features/**/*.feature"
+    ]
+}
