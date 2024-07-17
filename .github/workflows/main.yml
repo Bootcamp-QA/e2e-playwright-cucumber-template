@@ -32,16 +32,19 @@ jobs:
         run: npm run test:desktop
 
       - name: Generate HTML Report for Desktop
+        if: always()
         env:
           REPORT_PATH: src/reports/desktop
         run: npm run generate-report
 
       - name: Upload HTML Report for Desktop
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: desktop-report
           path: src/reports/cucumber_report.html
       - name: Upload videos for desktop
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: videos-desktop
@@ -70,18 +73,20 @@ jobs:
         run: npm run test:mobile
 
       - name: Generate HTML Report for Mobile
+        if: always()
         env:
           REPORT_PATH: src/reports/
         run: npm run generate-report
 
       - name: Upload HTML Report for Mobile
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mobile-report
           path: src/reports/cucumber_report.html
       - name: Upload videos for mobile
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: videos-mobile
           path: src/videos/mobile
-
